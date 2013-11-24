@@ -3,23 +3,24 @@
 
 /// Alexis Giraudet
 
-struct Maillon
-{
-    //T elt;//todo: template
-    Maillon *suiv;
-};
-
+template <class T>
 class Chainage
 {
+    struct Maillon
+    {
+        T elt;//todo: template
+        Maillon *suiv;
+    };
+
     public:
         Chainage();
         ~Chainage();
         bool estVide();
         void reinitialiser();
-        void insererTete();//todo: template
-        void insererQueue();//todo: template
-        void retirerTete();//todo: retourner first
-        void retirerQueue();//todo: retourner last
+        void insererTete(T &data);//todo: template
+        void insererQueue(T data);//todo: template
+        T retirerTete();//todo: retourner first
+        T retirerQueue();//todo: retourner last
         void insererOrdre();//todo: template
         void plusPetitElement();//todo: template, comparateur
         void retirerTous();//todo: template, predicat
