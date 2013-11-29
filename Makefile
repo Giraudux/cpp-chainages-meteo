@@ -16,4 +16,4 @@ all: ./build/tp3
 	g++ -o ./build/main.o -c ./src/main.cpp
 
 clean:
-	rm -r ./build/*
+	rm ./build/*
