@@ -11,7 +11,7 @@ struct ReleveMeteo
 {
     unsigned int station;
     DateMeteo date;
-    int temperature;
+    double temperature;
 };
 
 typedef int (*CompReleveMeteo)(const ReleveMeteo &rm1, const ReleveMeteo &rm2);
