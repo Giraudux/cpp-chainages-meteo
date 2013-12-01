@@ -2,7 +2,7 @@
 
 /// Alexis Giraudet
 
-bool lire(char *filename, Chainage &chainage)
+bool lectureReleve(char *filename, Chainage &chainage)
 {
     std::ifstream ifs(filename, std::ifstream::in);
     if(ifs)
@@ -31,7 +31,20 @@ int main(int argc, char *argv[])
         return 1;
     }
     Chainage c = creerChainage();
-    lire(argv[1],c);
+    lectureReleve(argv[1],c);
     afficherChainage(c,std::cout);
+    try
+    {
+        ReleveMeteo rm = creerReleveMeteo();
+        rm = plusPetitElement(c,compReleveMeteo1);
+        afficherReleveMeteo(rm,std::cout);
+        reinitialiser(c);
+        rm = plusPetitElement(c,compReleveMeteo1);
+    }
+    catch(std::exception &e)
+    {
+        std::cout << "chainage vide" << std::endl;
+    }
+    reinitialiser(c);
     return 0;
 }

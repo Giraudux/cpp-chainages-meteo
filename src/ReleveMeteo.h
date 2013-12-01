@@ -19,7 +19,7 @@ typedef bool (*PredicatReleveMeteo)(const ReleveMeteo &rm);
 
 ReleveMeteo creerReleveMeteo();
 void initialiserReleveMeteo(ReleveMeteo &releveMeteo);
-int comparerReleveMeteo(ReleveMeteo releveMeteo1, ReleveMeteo releveMeteo2);
+int compReleveMeteo1(const ReleveMeteo &rm1, const ReleveMeteo &rm2);
 void afficherReleveMeteo(const ReleveMeteo &releveMeteo, std::ostream &sortie);
 
 #endif

@@ -18,9 +18,10 @@ void initialiserChainage(Chainage &chainage)
 
 void reinitialiser(Chainage &chainage)
 {
-    while(chainage.tete != 0)
+    while(chainage.nb != 0)
     {
         retirerTete(chainage);
+        //retirerQueue(chainage);
     }
 }
 
@@ -55,12 +56,40 @@ void insererQueue(Chainage &chainage, const ReleveMeteo releveMeteo)
 
 void retirerTete(Chainage &chainage)
 {
-    ;
+    if(chainage.nb > 0)
+    {
+        Maillon *maillon = chainage.tete;
+        chainage.tete = (*chainage.tete).suiv;
+        if(chainage.nb == 1)
+        {
+            chainage.queue = 0;
+        }
+        delete maillon;
+        chainage.nb--;
+    }
 }
 
 void retirerQueue(Chainage &chainage)
 {
-    ;
+    if(chainage.nb > 0)
+    {
+        if(chainage.nb == 1)
+        {
+            retirerTete(chainage);
+        }
+        else
+        {
+            Maillon *maillon = chainage.tete;
+            while((*maillon).suiv != chainage.queue)
+            {
+                maillon = (*maillon).suiv;
+            }
+            delete (*maillon).suiv;
+            (*maillon).suiv = 0;
+            chainage.queue = maillon;
+            chainage.nb--;
+        }
+    }
 }
 
 void insererOrdre(Chainage &chainage, const ReleveMeteo releveMeteo, CompReleveMeteo comparer)
@@ -68,7 +97,24 @@ void insererOrdre(Chainage &chainage, const ReleveMeteo releveMeteo, CompReleveM
     ;
 }
 
-//ReleveMeteo plusPetitElement(const Chainage &chainage, CompReleveMeteo comparer);
+ReleveMeteo plusPetitElement(const Chainage &chainage, CompReleveMeteo comparer)
+{
+    if(chainage.nb == 0)
+    {
+        throw std::exception();
+    }
+    Maillon *maillon = chainage.tete;
+    ReleveMeteo releveMeteo = (*maillon).elt;
+    while((*maillon).suiv != 0)
+    {
+        if(comparer((*maillon).elt,(*(*maillon).suiv).elt) < 0)
+        {
+            releveMeteo = (*(*maillon).suiv).elt;
+        }
+        maillon = (*maillon).suiv;
+    }
+    return releveMeteo;
+}
 
 void retirerTous(Chainage &chainage, PredicatReleveMeteo verifier)
 {

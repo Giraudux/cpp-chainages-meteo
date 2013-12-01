@@ -18,8 +18,7 @@ void initialiserDateMeteo(DateMeteo &dateMeteo)
 
 int comparerDateMeteo(const DateMeteo &dateMeteo1, const DateMeteo &dateMeteo2)
 {
-    //TODO
-    return 0;
+    return (dateMeteo1.heure + dateMeteo1.jour*100 + dateMeteo1.annee*100000) - (dateMeteo2.heure + dateMeteo2.jour*100 + dateMeteo2.annee*100000);
 }
 
 void afficherDateMeteo(const DateMeteo &dateMeteo, std::ostream &sortie)

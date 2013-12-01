@@ -2,6 +2,7 @@
 #define CHAINAGE_H
 
 #include <iostream>
+#include <exception>
 
 #include "ReleveMeteo.h"
 
