@@ -32,6 +32,11 @@ int compReleveMeteo1(const ReleveMeteo &rm1, const ReleveMeteo &rm2)
     }
 }
 
+int compReleveMeteo2(const ReleveMeteo &rm1, const ReleveMeteo &rm2)
+{
+    return rm1.temperature - rm2.temperature;
+}
+
 void afficherReleveMeteo(const ReleveMeteo &releveMeteo, std::ostream &sortie)
 {
     sortie << releveMeteo.station << " ";

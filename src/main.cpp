@@ -32,14 +32,13 @@ int main(int argc, char *argv[])
     }
     Chainage c = creerChainage();
     lectureReleve(argv[1],c);
-    afficherChainage(c,std::cout);
+    //afficherChainage(c,std::cout);
     try
     {
         ReleveMeteo rm = creerReleveMeteo();
         rm = plusPetitElement(c,compReleveMeteo1);
         afficherReleveMeteo(rm,std::cout);
-        reinitialiser(c);
-        rm = plusPetitElement(c,compReleveMeteo1);
+        std::cout << std::endl;
     }
     catch(std::exception &e)
     {

@@ -107,7 +107,7 @@ ReleveMeteo plusPetitElement(const Chainage &chainage, CompReleveMeteo comparer)
     ReleveMeteo releveMeteo = (*maillon).elt;
     while((*maillon).suiv != 0)
     {
-        if(comparer((*maillon).elt,(*(*maillon).suiv).elt) < 0)
+        if(comparer((*maillon).elt,(*(*maillon).suiv).elt) > 0)
         {
             releveMeteo = (*(*maillon).suiv).elt;
         }
