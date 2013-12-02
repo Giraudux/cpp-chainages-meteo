@@ -21,6 +21,9 @@ ReleveMeteo creerReleveMeteo();
 void initialiserReleveMeteo(ReleveMeteo &releveMeteo);
 int compReleveMeteo1(const ReleveMeteo &rm1, const ReleveMeteo &rm2);
 int compReleveMeteo2(const ReleveMeteo &rm1, const ReleveMeteo &rm2);
+int compReleveMeteo3(const ReleveMeteo &rm1, const ReleveMeteo &rm2);
+bool predicatReleveMeteo1(const ReleveMeteo &rm);
+bool predicatReleveMeteo2(const ReleveMeteo &rm);
 void afficherReleveMeteo(const ReleveMeteo &releveMeteo, std::ostream &sortie);
 
 #endif

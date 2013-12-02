@@ -37,6 +37,21 @@ int compReleveMeteo2(const ReleveMeteo &rm1, const ReleveMeteo &rm2)
     return rm1.temperature - rm2.temperature;
 }
 
+int compReleveMeteo3(const ReleveMeteo &rm1, const ReleveMeteo &rm2)
+{
+    return rm2.temperature - rm1.temperature;
+}
+
+bool predicatReleveMeteo1(const ReleveMeteo &rm)
+{
+    return rm.temperature < 0;
+}
+
+bool predicatReleveMeteo2(const ReleveMeteo &rm)
+{
+    return rm.temperature > 0;
+}
+
 void afficherReleveMeteo(const ReleveMeteo &releveMeteo, std::ostream &sortie)
 {
     sortie << releveMeteo.station << " ";

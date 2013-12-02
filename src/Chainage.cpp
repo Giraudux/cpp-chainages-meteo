@@ -92,33 +92,62 @@ void retirerQueue(Chainage &chainage)
     }
 }
 
-void insererOrdre(Chainage &chainage, const ReleveMeteo releveMeteo, CompReleveMeteo comparer)
-{
-    ;
-}
-
 ReleveMeteo plusPetitElement(const Chainage &chainage, CompReleveMeteo comparer)
 {
-    if(chainage.nb == 0)
+    if(chainage.nb < 1)
     {
         throw std::exception();
     }
-    Maillon *maillon = chainage.tete;
-    ReleveMeteo releveMeteo = (*maillon).elt;
-    while((*maillon).suiv != 0)
+    else
     {
-        if(comparer((*maillon).elt,(*(*maillon).suiv).elt) > 0)
+        Maillon *maillon = chainage.tete;
+        ReleveMeteo releveMeteo = (*maillon).elt;
+        while(maillon != 0)
         {
-            releveMeteo = (*(*maillon).suiv).elt;
+            if(comparer((*maillon).elt,releveMeteo) < 0)
+            {
+                releveMeteo = (*(*maillon).suiv).elt;
+            }
+            maillon = (*maillon).suiv;
         }
-        maillon = (*maillon).suiv;
+        return releveMeteo;
     }
-    return releveMeteo;
 }
 
 void retirerTous(Chainage &chainage, PredicatReleveMeteo verifier)
 {
-    ;
+    if(chainage.nb > 0)
+    {
+        Maillon *maillon = chainage.tete, *maillonPre = 0;
+        while(maillon != 0)
+        {
+            if(verifier((*maillon).elt))
+            {
+                if((maillon == chainage.tete) || (chainage.nb == 1))
+                {
+                    retirerTete(chainage);
+                    maillon = chainage.tete;
+                }
+                else
+                {
+                    (*maillonPre).suiv = (*maillon).suiv;
+                    if(maillon == chainage.queue)
+                    {
+                        chainage.queue = maillonPre;
+                    }
+                    delete maillon;
+                    maillon = (*maillonPre).suiv;
+                    chainage.nb--;
+                }
+            }
+            else
+            {
+                maillonPre = maillon;
+                maillon = (*maillon).suiv;
+            }
+        }
+    }
+    
 }
 
 void afficherChainage(const Chainage &chainage, std::ostream &sortie)
